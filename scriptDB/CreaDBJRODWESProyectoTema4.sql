@@ -5,11 +5,11 @@ CREATE DATABASE IF NOT EXISTS DB2JRDWESProyectoTema4;
 USE DB2JRDWESProyectoTema4;
 
 CREATE TABLE IF NOT EXISTS T02_Departamento (
-  T02_CodDepartamento  CHAR(3) NOT NULL PRIMARY KEY,
-  T02_DescDepartamento VARCHAR(255) NOT NULL,
-  T02_FechaCreacionDepartamento DATETIME NOT NULL,
-  T02_VolumenDeNegocio FLOAT NULL,
-  T02_FechaBajaDepartamento DATETIME NULL) ENGINE=InnoDB;
+  T02_CodDepartamento  CHAR(3) PRIMARY KEY,
+  T02_DescDepartamento VARCHAR(255),
+  T02_FechaCreacionDepartamento DATETIME DEFAULT CURRENT_TIMESTAMP,
+  T02_VolumenDeNegocio DOUBLE,
+  T02_FechaBajaDepartamento DATETIME) ENGINE=InnoDB;
 
 DROP USER 'user2JRDWESProyectoTema4'@'localhost';
 
