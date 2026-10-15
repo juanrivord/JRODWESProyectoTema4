@@ -1,0 +1,160 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 30 sept 2026, 12:37:04
+    Author     : juan.rivord
+*/
+
+* {
+    box-sizing: border-box; 
+    scroll-behavior: smooth; 
+    font-family: Roboto;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #cbd3dc;
+    color: #334155;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display:inline-flex;
+    width: 80px;
+    height: auto;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+main {
+    max-width: 1500px;
+    margin: -30px auto 40px; 
+    padding: 40px;
+    background-color: #f8fafc;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 10;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    display: table;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+
+th {
+    background-color: #474a8a;
+    color: white;
+}
+
+h, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+td {
+    display: table-cell;
+    unicode-bidi: isolate;
+}
+
+td a {
+    display: block;
+}
+
+.btn-ejecutar {
+    background-color: #28a745;
+}
+
+.btn-codigo {
+    background-color: #17a2b8;
+}
+
+.btn {
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+}
+
+.bloqueado{
+    text-decoration: none;
+    border-radius: 4px;
+    padding:8px;
+    background-color: #808080;
+    font-size: 14px;
+    color: white;
+    
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: none;
+    color:white;
+}
+
+footer {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: white;
+    text-align: center;
+    padding: 20px 20px;
+    font-size: 0.9rem;
+    border-top: #f1f5f9 solid 1px;
+}
+
+footer a {
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer img{
+    border-radius: 50px;
+    background-color: white;
+    width: 2%;
+    border-radius: 50px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+footer img:hover{
+    transform: translateY(-2px);
+}
