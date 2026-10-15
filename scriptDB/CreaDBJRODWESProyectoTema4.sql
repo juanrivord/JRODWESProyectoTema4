@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS T02_Departamento (
   T02_DescDepartamento VARCHAR(255),
   T02_FechaCreacionDepartamento DATETIME DEFAULT CURRENT_TIMESTAMP,
   T02_VolumenDeNegocio DOUBLE,
-  T02_FechaBajaDepartamento DATETIME) ENGINE=InnoDB;
+  T02_FechaBajaDepartamento DATETIME DEFAULT NULL) ENGINE=InnoDB;
 
 DROP USER 'user2JRDWESProyectoTema4'@'localhost';
 
