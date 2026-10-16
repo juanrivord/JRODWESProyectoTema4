@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Ejercicio 1</title>
+        <link rel="stylesheet" href="../webroot/css/style.css">
         <style>
             .azul{
                 color:blue;
@@ -12,6 +13,10 @@
             }
         </style>
     </head>
+    <header id="inicio">
+            <img src="../webroot/images/logo.png" alt="Logo de I.E.S. Los Sauces" class="logo">
+        <h1>TEMA 4: Técnicas de acceso a datos en PHP</h1>
+    </header>
     <body>
 
         <?php
@@ -73,4 +78,10 @@
         ?>
         
     </body>
+    <footer>
+        <address>
+            <p>&copy; 2025-2026 <span><a href="../indexProyectoTema4.php">Juan Rivera Ordoñez</a></span>- I.E.S. Los Sauces</p>
+            <p><a href="https://github.com/juanrivord/JRODWESProyectoTema4"><img src="../webroot/images/github.png" alt="Imagen de github"></a></p>
+        </address>
+    </footer>
 </html>
