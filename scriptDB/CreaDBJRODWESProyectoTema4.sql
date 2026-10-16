@@ -14,4 +14,4 @@ CREATE TABLE IF NOT EXISTS T02_Departamento (
 CREATE USER 'userJRODWESProyectoTema4'@'localhost' 
   IDENTIFIED BY 'paso';
 
-GRANT ALL ON DB2JRDWESProyectoTema4.* TO 'userJRODWESProyectoTema4'@'localhost';
+GRANT ALL ON DBJRODWESProyectoTema4.* to 'userJRODWESProyectoTema4'@'%';

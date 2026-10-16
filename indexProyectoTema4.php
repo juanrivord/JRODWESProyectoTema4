@@ -55,7 +55,7 @@
                 <tr>
                     <td>1</td>
                     <td>Conexión a la base de datos con la cuenta usuario y tratamiento de errores.</td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
+                    <td><a class="bloqueado" href="./codigoPHP/ejercicio1.php">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
