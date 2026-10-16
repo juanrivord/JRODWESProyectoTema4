@@ -1,8 +1,8 @@
 -- Creación de la base de datos, tabla y usuario de aplicación
 
-CREATE DATABASE IF NOT EXISTS DB2JRDWESProyectoTema4;
+CREATE DATABASE IF NOT EXISTS DBJRODWESProyectoTema4;
 
-USE DB2JRDWESProyectoTema4;
+USE DBJRODWESProyectoTema4;
 
 CREATE TABLE IF NOT EXISTS T02_Departamento (
   T02_CodDepartamento  CHAR(3) PRIMARY KEY,
@@ -11,11 +11,7 @@ CREATE TABLE IF NOT EXISTS T02_Departamento (
   T02_VolumenDeNegocio DOUBLE,
   T02_FechaBajaDepartamento DATETIME DEFAULT NULL) ENGINE=InnoDB;
 
-CREATE USER 'user2JRDWESProyectoTema4'@'localhost' 
+CREATE USER 'userJRODWESProyectoTema4'@'localhost' 
   IDENTIFIED BY 'paso';
 
-GRANT SELECT, INSERT, UPDATE, DELETE
-  ON DB2JRDWESProyectoTema4.*
-  TO 'user2JRDWESProyectoTema4'@'localhost';
-
-FLUSH PRIVILEGES;
+GRANT ALL ON DB2JRDWESProyectoTema4.* TO 'userJRODWESProyectoTema4'@'localhost';
