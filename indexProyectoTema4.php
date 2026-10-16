@@ -26,15 +26,15 @@
             <tbody>
                 <tr>
                     <td>Creación</td>
-                    <td><a class="btn btn-ejecutar" href="mostrarcodigo/muestraCreaSQL.php">Código</a></td>
+                    <td><a class="btn btn-codigo" href="mostrarcodigo/muestraCreaSQL.php">Código</a></td>
                 </tr>
                 <tr>
                     <td>Carga</td>
-                    <td><a class="btn btn-ejecutar" href="mostrarcodigo/muestraCargaSQL.php">Código</a></td>
+                    <td><a class="btn btn-codigo" href="mostrarcodigo/muestraCargaSQL.php">Código</a></td>
                 </tr>
                 <tr>
                     <td>Borrado</td>
-                    <td><a class="btn btn-ejecutar" href="mostrarcodigo/muestraBorraSQL.php">Código</a></td>
+                    <td><a class="btn btn-codigo" href="mostrarcodigo/muestraBorraSQL.php">Código</a></td>
                 </tr>
             </tbody>
         </table>
@@ -55,8 +55,8 @@
                 <tr>
                     <td>1</td>
                     <td>Conexión a la base de datos con la cuenta usuario y tratamiento de errores.</td>
-                    <td><a class="bloqueado" href="./codigoPHP/ejercicio1.php">Bloqueado</a></td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
+                    <td><a class="btn btn-ejecutar" href="./codigoPHP/ejercicio1.php">Ejecutar</a></td>
+                    <td><a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio1.php">Codigo</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                 </tr>
