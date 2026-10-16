@@ -11,8 +11,6 @@ CREATE TABLE IF NOT EXISTS T02_Departamento (
   T02_VolumenDeNegocio DOUBLE,
   T02_FechaBajaDepartamento DATETIME DEFAULT NULL) ENGINE=InnoDB;
 
-DROP USER 'user2JRDWESProyectoTema4'@'localhost';
-
 CREATE USER 'user2JRDWESProyectoTema4'@'localhost' 
   IDENTIFIED BY 'paso';
 
