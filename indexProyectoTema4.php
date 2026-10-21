@@ -25,19 +25,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Creación</td>
+                    <td>CreaDBJRODWESProyectoTema4</td>
                     <td><a class="btn btn-codigo" href="mostrarcodigo/muestraCreaSQL.php">Código</a></td>
                 </tr>
                 <tr>
-                    <td>Carga</td>
+                    <td>CargaInicialDBJRODWESProyectoTema4</td>
                     <td><a class="btn btn-codigo" href="mostrarcodigo/muestraCargaSQL.php">Código</a></td>
                 </tr>
                 <tr>
-                    <td>Borrado</td>
+                    <td>BorraDBJRODWESProyectoTema4</td>
                     <td><a class="btn btn-codigo" href="mostrarcodigo/muestraBorraSQL.php">Código</a></td>
                 </tr>
                 <tr>
-                    <td>Configuracion</td>
+                    <td>ConfigDBPDO</td>
                     <td><a class="btn btn-codigo" href="mostrarcodigo/muestraConfigDBPDO.php">Código</a></td>
                 </tr>
             </tbody>

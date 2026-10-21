@@ -10,7 +10,7 @@ define('SERVER', "10.199.8.97");
 // DESCOMENTAR EN CASA
 // define('SERVER', "192.168.1.104");
 define('DBNAME', "JROCDWESProyectoTema4");
-define('USER', "adminsql");
+define('USER', "userJRODWESProyectoTema4");
 define('PASSWORD', "paso");
 
 ?>

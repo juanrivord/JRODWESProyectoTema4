@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS T02_Departamento (
   T02_VolumenDeNegocio DOUBLE,
   T02_FechaBajaDepartamento DATETIME DEFAULT NULL) ENGINE=InnoDB;
 
-CREATE USER 'userJRODWESProyectoTema4'@'localhost' 
+CREATE USER 'userJRODWESProyectoTema4'@'%' 
   IDENTIFIED BY 'paso';
 
 GRANT ALL ON DBJRODWESProyectoTema4.* to 'userJRODWESProyectoTema4'@'%';
