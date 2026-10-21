@@ -71,23 +71,6 @@
             unset($miDB);
         }
 
-
-        echo "<hr>";
-
-
-        // PRUEBA DE CONSULTA PREPARADA
-        // try{
-        //     $miDB = new PDO(HOST,USER,PASSWORD);
-        //     echo "<h2>CONSULTAS PREPARADAS</h2><br/><br>";
-
-        // } catch (PDOException $e) {
-        //     echo "ERROR: No se pudo conectar a MariaDB!<br/><br>";
-        //     echo "ERROR: ".$e->getMessage()."<br/>";
-        // } finally{
-        //     unset($miDB);
-        // }
-
-        
         ?>
         
     </body>
