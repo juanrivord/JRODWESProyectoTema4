@@ -75,8 +75,8 @@
                 <tr>
                     <td>3</td>
                     <td>Formulario para añadir un departamento a la tabla Departamento con validación de entrada y control de errores.</td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
+                    <td><a class="btn btn-ejecutar" href="./codigoPHP/ejercicio3.php">Ejecutar</a></td>
+                    <td><a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio3.php">Codigo</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                 </tr>
