@@ -25,9 +25,6 @@
         try{
             $miDB = new PDO(HOST,USER,PASSWORD);
             echo "<h2>CONSULTAS DIRECTAS</h2><br>";
-            
-
-            // FETCH OBJECT
 
             $consulta = $miDB->query("SELECT * FROM T02_Departamento");
             // $numRegistros = 0; ES MEJOR USAR rowCount()
@@ -63,6 +60,8 @@
 
             echo("</table>");
 
+            echo("<strong>Numero de filas: </strong>".$consulta->rowCount());
+
 
            
             
@@ -77,16 +76,16 @@
 
 
         // PRUEBA DE CONSULTA PREPARADA
-        try{
-            $miDB = new PDO(HOST,USER,PASSWORD);
-            echo "<h2>CONSULTAS PREPARADAS</h2><br/><br>";
+        // try{
+        //     $miDB = new PDO(HOST,USER,PASSWORD);
+        //     echo "<h2>CONSULTAS PREPARADAS</h2><br/><br>";
 
-        } catch (PDOException $e) {
-            echo "ERROR: No se pudo conectar a MariaDB!<br/><br>";
-            echo "ERROR: ".$e->getMessage()."<br/>";
-        } finally{
-            unset($miDB);
-        }
+        // } catch (PDOException $e) {
+        //     echo "ERROR: No se pudo conectar a MariaDB!<br/><br>";
+        //     echo "ERROR: ".$e->getMessage()."<br/>";
+        // } finally{
+        //     unset($miDB);
+        // }
 
         
         ?>
