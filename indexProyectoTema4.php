@@ -63,8 +63,8 @@
                 <tr>
                     <td>2</td>
                     <td>Mostrar el contenido de la tabla Departamento y el número de registros.</td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
+                    <td><a class="btn btn-ejecutar" href="./codigoPHP/ejercicio2.php">Ejecutar</a></td>
+                    <td><a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio2.php">Codigo</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                 </tr>
