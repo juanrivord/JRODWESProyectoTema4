@@ -21,12 +21,9 @@
 
         <?php
         require_once '../core/231018libreriaValidacion.php'; 
+        require_once '../config/configDBPDO.php';
 
         echo "<a href='../indexProyectoTema4.php'>⬅ Volver al inicio</a><br><br>";
-
-        define("HOST","mysql:host=10.199.8.97;dbname=DBJRODWESProyectoTema4");
-        define("USER","adminsql");
-        define("PASSWORD","paso");
 
         $aAtributosConexion = [
             'AUTOCOMMIT', 'ERRMODE' , 'CASE' , 'CLIENT_VERSION', 'CONNECTION_STATUS',

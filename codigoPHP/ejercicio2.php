@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Ejercicio 1</title>
+        <title>Ejercicio 2</title>
         <link rel="stylesheet" href="../webroot/css/style.css">
         <style>
             h3{text-align: center;}
@@ -15,18 +15,10 @@
     <body>
 
         <?php
-        require_once '../core/231018libreriaValidacion.php'; 
+        require_once '../core/231018libreriaValidacion.php';
+        require_once '../config/configDBPDO.php';
 
         echo "<a href='../indexProyectoTema4.php'>⬅ Volver al inicio</a><br><br>";
-
-        define("HOST","mysql:host=10.199.8.97;dbname=DBJRODWESProyectoTema4");
-        define("USER","adminsql");
-        define("PASSWORD","paso");
-
-        $aAtributosConexion = [
-            'AUTOCOMMIT', 'ERRMODE' , 'CASE' , 'CLIENT_VERSION', 'CONNECTION_STATUS',
-            'ORACLE_NULLS', 'PERSISTENT', 'PREFETCH', 'SERVER_INFO', 'SERVER_VERSION', 'TIMEOUT'
-        ];
 
 
         // CONEXION ACERTADA

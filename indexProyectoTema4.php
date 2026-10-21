@@ -36,6 +36,10 @@
                     <td>Borrado</td>
                     <td><a class="btn btn-codigo" href="mostrarcodigo/muestraBorraSQL.php">Código</a></td>
                 </tr>
+                <tr>
+                    <td>Configuracion</td>
+                    <td><a class="btn btn-codigo" href="mostrarcodigo/muestraConfigDBPDO.php">Código</a></td>
+                </tr>
             </tbody>
         </table>
         
