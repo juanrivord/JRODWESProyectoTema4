@@ -22,9 +22,6 @@
 
         echo "<a href='../indexProyectoTema4.php'>⬅ Volver al inicio</a><br><br>";
 
-
-        
-
             //Inicializacion de variables
             $entradaOK = true; // Variable que nos indica que todo va bien
             //Array donde recogemos los mensajes de error
@@ -124,13 +121,15 @@
 
             echo("</table>");
 
-            echo("<strong>Numero de filas: </strong>".$consulta->rowCount());
+            echo("<strong>Numero de filas: </strong>".$consulta->rowCount()."<br><br>");
             
             } catch (PDOException $e) {
                 echo "ERROR: ".$e->getMessage()."<br/>";
             } finally{
                 unset($miDB);
             }
+
+            echo ("<h3><a href='./ejercicio3.php'>Volver a añadir</a></h3>");
                     
             } else {
 
