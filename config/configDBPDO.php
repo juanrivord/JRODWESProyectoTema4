@@ -5,6 +5,8 @@
  * Permite alternar fácilmente entre el entorno de Casa y Clase.
  */
 
+if (date_default_timezone_get()!="Europe/Madrid") date_default_timezone_set("Europe/Madrid");
+
 define('HOST', "mysql:host=10.199.8.97;dbname=DBJRODWESProyectoTema4");
 define('SERVER', "10.199.8.97");
 // DESCOMENTAR EN CASA

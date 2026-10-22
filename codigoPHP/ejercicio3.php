@@ -18,8 +18,6 @@
         require_once '../core/231018libreriaValidacion.php';
         require_once '../config/configDBPDO.php';
 
-        if (date_default_timezone_get()!="Europe/Madrid") date_default_timezone_set("Europe/Madrid");
-
         echo "<a href='../indexProyectoTema4.php'>⬅ Volver al inicio</a><br><br>";
 
             //Inicializacion de variables
@@ -40,8 +38,6 @@
             // Comprueba si el formulario se a enviado
             if (isset($_REQUEST["enviar"])) {
                 // Validar Entrada
-
-                $volumenNegocioDepProcesado = str_replace(',', '.', $_REQUEST['volumenNegocioDep']);
     
                 $aError["codigoDep"] = validacionFormularios::comprobarAlfabetico($_REQUEST["codigoDep"],1000,1,1);
                 $aError["descripcionDep"] = validacionFormularios::comprobarAlfabetico($_REQUEST["descripcionDep"],1000,1,1);                
@@ -178,8 +174,9 @@
     </body>
     <footer>
         <address>
-            <p>&copy; 2025-2026 <span><a href="../indexProyectoTema4.php">Juan Rivera Ordoñez</a></span>- I.E.S. Los Sauces</p>
+            <p>&copy; 2025-2026 <span><a href="../../index.html">Juan Rivera Ordoñez</a></span>- I.E.S. Los Sauces</p>
             <p><a href="https://github.com/juanrivord/JRODWESProyectoTema4"><img src="../webroot/images/github.png" alt="Imagen de github"></a></p>
+            <p><a href="../indexProyectoTema4.php"><img src="../webroot/images/casita.png" alt="Imagen de una casita"></a></p>
         </address>
     </footer>
 </html>
