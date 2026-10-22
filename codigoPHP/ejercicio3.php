@@ -15,19 +15,27 @@
     <body>
 
         <?php
-        require_once '../core/231018libreriaValidacion.php';
-        require_once '../config/configDBPDO.php';
+        /* 
+            * Juan Rivera Ordoñez
+            * 22/10/2026
+            * 3. Formulario con validacion que envia los datos a la base de datos y luego muestra una tabla con los datos de la tabla departamentos
+        */
+        require_once '../core/231018libreriaValidacion.php'; // Libreria de validación utilizada
+        require_once '../config/configDBPDO.php'; // Constantes mas utilizadas (conexion BD) y algunos parametros siempre utilizados
 
         echo "<a href='../indexProyectoTema4.php'>⬅ Volver al inicio</a><br><br>";
 
             //Inicializacion de variables
+
             $entradaOK = true; // Variable que nos indica que todo va bien
+
             //Array donde recogemos los mensajes de error
             $aError = [
                 'codigoDep' => "",
                 'descripcionDep' => "",
                 'fechaCreacionDep' => "",
                 'volumenNegocioDep' => ""];
+
             //Array donde recogemos la respuestas correctas
             $aRespuesta = [
                 'codigoDep' => "",
@@ -63,10 +71,13 @@
             $aRespuesta["descripcionDep"] = htmlspecialchars($_REQUEST["descripcionDep"]);
             $aRespuesta["fechaCreacionDep"] = new DateTime($aRespuesta["fechaCreacionDep"]);
             $aRespuesta["volumenNegocioDep"] = floatval(str_replace(',', '.', $_REQUEST["volumenNegocioDep"]));
-                
-        try{
-            $miDB = new PDO(HOST,USER,PASSWORD);
+             
+        // Comienza la conexión de base de datos con gestion de extensiones
+        try{ 
+            $miDB = new PDO(HOST,USER,PASSWORD); // Conexión PDO
 
+
+            // respuestas pasadas a string dentro de una variable para poder enviarlas en la consulta SQL
             $sCodigoDepInsert = $aRespuesta["codigoDep"];
             $sDescripcionDepInsert = $aRespuesta["descripcionDep"];
             $sFechaCreacionDepInsert = $aRespuesta["fechaCreacionDep"] ->format("Y-m-d");
