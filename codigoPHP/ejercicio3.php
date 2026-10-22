@@ -32,15 +32,13 @@
                 'codigoDep' => "",
                 'descripcionDep' => "",
                 'fechaCreacionDep' => "",
-                'VolumenNegocioDep' => "",
-                'fechaBajaDep' => ""];
+                'VolumenNegocioDep' => ""];
             //Array donde recogemos la respuestas correctas
             $aRespuesta = [
                 'codigoDep' => "",
                 'descripcionDep' => "",
                 'fechaCreacionDep' => "",
-                'VolumenNegocioDep' => "",
-                'fechaBajaDep' => ""];
+                'VolumenNegocioDep' => ""];
 
             // Comprueba si el formulario se a enviado
             if (isset($_REQUEST["enviar"])) {
@@ -54,7 +52,6 @@
                 // no queremos la fecha mínima, sino un año desde el 1900, ya que estamos validando fechas de nacimiento
                 $aError["fechaCreacionDep"] = validacionFormularios::validarFecha($_REQUEST["fechaCreacionDep"],date("Y-m-d H:i:s"),"1900-01-01 00:00:00", 1);
                 $aError['VolumenNegocioDep'] = validacionFormularios::comprobarFloat($VolumenNegocioDepProcesado, 10000, 0, 1);
-                $aError['fechaBajaDep'] = validacionFormularios::validarFecha($_REQUEST["fechaBajaDep"],date("Y-m-d H:i:s"),"1900-01-01 00:00:00", 0);
 
                 foreach ($aError as $value) {
                     if (!empty($value)) $entradaOK = false;
@@ -72,12 +69,28 @@
             $aRespuesta["codigoDep"] = htmlspecialchars($_REQUEST["codigoDep"]);
             $aRespuesta["descripcionDep"] = htmlspecialchars($_REQUEST["descripcionDep"]);
             $aRespuesta["fechaCreacionDep"] = new DateTime($aRespuesta["fechaCreacionDep"]);
-            $aRespuesta["VolumenNegocioDep"] = number_format((float)$VolumenNegocioDepProcesado, 2, ',', '') . ' €';
-            $aRespuesta["fechaBajaDep"]= new DateTime($aRespuesta["fechaBajaDep"]);
+            $aRespuesta["VolumenNegocioDep"] = number_format((float)$VolumenNegocioDepProcesado, 2, ',', '');
                 
         try{
             $miDB = new PDO(HOST,USER,PASSWORD);
-            echo "<h2>CONSULTAS DIRECTAS</h2><br>";
+
+            $sCodigoDepInsert = $aRespuesta["codigoDep"];
+            $sDescripcionDepInsert = $aRespuesta["descripcionDep"];
+            $sFechaCreacionDepInsert = $aRespuesta["fechaCreacionDep"] ->format("Y-m-d");
+            $sVolumenNegocioDepInsert = $aRespuesta["VolumenNegocioDep"];
+
+            $sqlInsert = <<<sql
+                INSERT INTO T02_Departamento (T02_CodDepartamento,T02_DescDepartamento,T02_FechaCreacionDepartamento,T02_VolumenDeNegocio) VALUES (
+                '$sCodigoDepInsert',
+                '$sDescripcionDepInsert',
+                '$sFechaCreacionDepInsert',
+                $sVolumenNegocioDepInsert,
+                null)
+            sql;
+            
+            $numRegistros = $miDB->exec($sqlInsert);
+
+            echo "Se ha insertado correctamente. Filas afectadas: ".$numRegistros;
 
             $consulta = $miDB->query("SELECT * FROM T02_Departamento");
 
@@ -88,7 +101,7 @@
             echo '<th>Descripción</th>';
             echo '<th>Fecha de creación</th>';
             echo '<th>Volumen de negocio</th>';
-            echo '<th>Fecha de baja</th>';                       
+            echo '<th>Fecha de baja</th>';
             echo '</thead>';
             while ($registro = $consulta->fetchObject()) {
                 echo("<tr>");
@@ -155,14 +168,6 @@
 
                     <?php
                     if (!empty($aError["VolumenNegocioDep"])) echo "<span style='color:red;'>" . $aError['VolumenNegocioDep'] . "</span>";
-                    ?>
-
-                    <br/>
-                    <label for="fechaBajaDep">Fecha de baja:</label>
-                    <input type="text" name="fechaBajaDep" id="fechaBajaDep" value="<?php echo (isset($_REQUEST['fechaBajaDep'])?$_REQUEST['fechaBajaDep']:''); ?>"/>
-
-                    <?php
-                    if (!empty($aError["fechaBajaDep"])) echo "<span style='color:red;'>" . $aError['fechaBajaDep'] . "</span>";
                     ?>
 
                     <br/>
