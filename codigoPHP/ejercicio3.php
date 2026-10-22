@@ -32,26 +32,26 @@
                 'codigoDep' => "",
                 'descripcionDep' => "",
                 'fechaCreacionDep' => "",
-                'VolumenNegocioDep' => ""];
+                'volumenNegocioDep' => ""];
             //Array donde recogemos la respuestas correctas
             $aRespuesta = [
                 'codigoDep' => "",
                 'descripcionDep' => "",
                 'fechaCreacionDep' => "",
-                'VolumenNegocioDep' => ""];
+                'volumenNegocioDep' => ""];
 
             // Comprueba si el formulario se a enviado
             if (isset($_REQUEST["enviar"])) {
                 // Validar Entrada
 
-                $VolumenNegocioDepProcesado = str_replace(',', '.', $_REQUEST['VolumenNegocioDep']);
+                $volumenNegocioDepProcesado = str_replace(',', '.', $_REQUEST['volumenNegocioDep']);
     
                 $aError["codigoDep"] = validacionFormularios::comprobarAlfabetico($_REQUEST["codigoDep"],1000,1,1);
                 $aError["descripcionDep"] = validacionFormularios::comprobarAlfabetico($_REQUEST["descripcionDep"],1000,1,1);                
                 // la funcion date devuelve la asignacion de hoy con el formato que le pongamos, con parametro 0 devuelve la fecha mínima aceptada, en este caso
                 // no queremos la fecha mínima, sino un año desde el 1900, ya que estamos validando fechas de nacimiento
                 $aError["fechaCreacionDep"] = validacionFormularios::validarFecha($_REQUEST["fechaCreacionDep"],date("Y-m-d H:i:s"),"1900-01-01 00:00:00", 1);
-                $aError['VolumenNegocioDep'] = validacionFormularios::comprobarFloat($VolumenNegocioDepProcesado, 10000, 0, 1);
+                $aError['volumenNegocioDep'] = validacionFormularios::comprobarFloatMonetarioES($_REQUEST["volumenNegocioDep"], PHP_FLOAT_MAX, 0, 1);
 
                 foreach ($aError as $value) {
                     if (!empty($value)) $entradaOK = false;
@@ -69,7 +69,7 @@
             $aRespuesta["codigoDep"] = htmlspecialchars($_REQUEST["codigoDep"]);
             $aRespuesta["descripcionDep"] = htmlspecialchars($_REQUEST["descripcionDep"]);
             $aRespuesta["fechaCreacionDep"] = new DateTime($aRespuesta["fechaCreacionDep"]);
-            $aRespuesta["VolumenNegocioDep"] = number_format((float)$VolumenNegocioDepProcesado, 2, ',', '');
+            $aRespuesta["volumenNegocioDep"] = floatval(str_replace(',', '.', $_REQUEST["volumenNegocioDep"]));
                 
         try{
             $miDB = new PDO(HOST,USER,PASSWORD);
@@ -77,14 +77,14 @@
             $sCodigoDepInsert = $aRespuesta["codigoDep"];
             $sDescripcionDepInsert = $aRespuesta["descripcionDep"];
             $sFechaCreacionDepInsert = $aRespuesta["fechaCreacionDep"] ->format("Y-m-d");
-            $sVolumenNegocioDepInsert = $aRespuesta["VolumenNegocioDep"];
+            $svolumenNegocioDepInsert = $aRespuesta["volumenNegocioDep"];
 
             $sqlInsert = <<<sql
                 INSERT INTO T02_Departamento (T02_CodDepartamento,T02_DescDepartamento,T02_FechaCreacionDepartamento,T02_VolumenDeNegocio) VALUES (
                 '$sCodigoDepInsert',
                 '$sDescripcionDepInsert',
                 '$sFechaCreacionDepInsert',
-                $sVolumenNegocioDepInsert)
+                $svolumenNegocioDepInsert)
             sql;
             
             $numRegistros = $miDB->exec($sqlInsert);
@@ -162,11 +162,11 @@
                     ?>
 
                     <br/>
-                    <label for="VolumenNegocioDep">Volumen de Negocio: </label>
-                    <input type="text" name="VolumenNegocioDep" id="VolumenNegocioDep" value="<?php echo (isset($_REQUEST['VolumenNegocioDep'])?$_REQUEST['VolumenNegocioDep']:''); ?>"/>
+                    <label for="volumenNegocioDep">Volumen de Negocio: </label>
+                    <input type="text" name="volumenNegocioDep" id="volumenNegocioDep" value="<?php echo (isset($_REQUEST['volumenNegocioDep'])?$_REQUEST['volumenNegocioDep']:''); ?>"/>
 
                     <?php
-                    if (!empty($aError["VolumenNegocioDep"])) echo "<span style='color:red;'>" . $aError['VolumenNegocioDep'] . "</span>";
+                    if (!empty($aError["volumenNegocioDep"])) echo "<span style='color:red;'>" . $aError['volumenNegocioDep'] . "</span>";
                     ?>
 
                     <br/>
