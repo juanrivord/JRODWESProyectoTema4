@@ -84,8 +84,7 @@
                 '$sCodigoDepInsert',
                 '$sDescripcionDepInsert',
                 '$sFechaCreacionDepInsert',
-                $sVolumenNegocioDepInsert,
-                null)
+                $sVolumenNegocioDepInsert)
             sql;
             
             $numRegistros = $miDB->exec($sqlInsert);
