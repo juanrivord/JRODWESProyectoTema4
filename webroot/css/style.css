@@ -85,7 +85,7 @@ th {
     color: white;
 }
 
-h, td {
+hr, td {
     padding: 12px;
     text-align: center;
     border-bottom: 1px solid #ddd;
