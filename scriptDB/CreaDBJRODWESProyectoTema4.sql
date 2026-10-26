@@ -15,3 +15,5 @@ CREATE USER 'userJRODWESProyectoTema4'@'%'
   IDENTIFIED BY 'paso';
 
 GRANT ALL ON DBJRODWESProyectoTema4.* to 'userJRODWESProyectoTema4'@'%';
+
+FLUSH PRIVILEGES;
