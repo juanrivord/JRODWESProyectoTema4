@@ -50,7 +50,7 @@
                 echo("<td>".number_format($registro->T02_VolumenDeNegocio,2,',','.')."€</td>");
                 // Si la fecha esta vacia no la creamos, en cambio si exite, creamos el objeto de fecha
                 if (is_null($registro->T02_FechaBajaDepartamento)) {
-                    echo '<td>No definida</td>';
+                    echo '<td></td>';
                 } else {
                     $oFechaBaja = new DateTime($registro->T02_FechaBajaDepartamento);
                     echo '<td>'.$oFechaBaja->format('d/m/Y').'</td>';
