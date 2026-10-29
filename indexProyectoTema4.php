@@ -84,8 +84,8 @@
                     <td>4</td>
                     <td>Formulario de búsqueda de departamentos por descripción (por una parte del campo DescDepartamento,
                          si el usuario no pone nada deben aparecer todos los departamentos).</td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
+                    <td><a class="btn btn-ejecutar" href="./codigoPHP/ejercicio4.php">Ejecutar</a></td>
+                    <td><a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio4.php">Codigo</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                 </tr>
@@ -153,7 +153,7 @@
     <footer>
         <address>
             <p>&copy; 2025-2026 <span><a href="../index.html">Juan Rivera Ordoñez</a></span>- I.E.S. Los Sauces</p>
-            <p><a href="https://github.com/juanrivord/JRODWESProyectoTema4"><img src="./webroot/images/github.png" alt="Imagen de github"></a></p>
+            <a href="https://github.com/juanrivord/JRODWESProyectoTema4"><img src="./webroot/images/github.png" alt="Imagen de github"></a>
         </address>
     </footer>
 </body>
