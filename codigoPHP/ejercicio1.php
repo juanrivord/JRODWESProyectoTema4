@@ -36,7 +36,7 @@
             $miDB = new PDO(HOST,USER,PASSWORD);
             echo "Conectado a MariaDB con exito!<br/><br>";
             echo $miDB->getAttribute(PDO::ATTR_CONNECTION_STATUS)."<br/>";
-            echo $miDB->getAttribute(PDO::ATTR_FETCH_TABLE_NAMES)."<br/>";
+            // echo $miDB->getAttribute(PDO::ATTR_FETCH_TABLE_NAMES)."<br/>";
             echo $miDB->getAttribute(PDO::ATTR_SERVER_VERSION)."<br/>";
 
             foreach ($aAtributosConexion as $atributo) {

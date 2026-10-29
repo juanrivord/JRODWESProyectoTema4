@@ -7,7 +7,7 @@
 
 if (date_default_timezone_get()!="Europe/Madrid") date_default_timezone_set("Europe/Madrid");
 
-define('DBNAME', "JROCDWESProyectoTema4");
+define('DBNAME', "DBJRODWESProyectoTema4");
 define('PASSWORD', "paso");
 
 
