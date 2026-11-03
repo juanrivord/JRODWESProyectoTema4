@@ -93,8 +93,8 @@
                     <td>5</td>
                     <td>Pagina web que añade tres registros a nuestra tabla Departamento utilizando tres instrucciones
                         insert y una transacción, de tal forma que se añadan los tres registros o no se añada ninguno.</td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
+                    <td><a class="btn btn-ejecutar" href="./codigoPHP/ejercicio5.php">Ejecutar</a></td>
+                    <td><a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio5.php">Codigo</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                 </tr>
