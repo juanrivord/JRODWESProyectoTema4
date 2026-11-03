@@ -56,9 +56,10 @@
                 
                 foreach ($aDatosDepartamentos as $aDatosCadaDepartamento){
                     //insercion sin consulta preparada
-//                    $insercion= 'insert into T02_Departamento values ("'.$aDatosCadaDepartamento[":codDepartamento"].'","'.$aDatosCadaDepartamento[":desDepartamento"].'",now(),"'.$aDatosCadaDepartamento[":volumenNegocioDepartamento"].'",null)';
-//                    echo "<span> $insercion </span><br>";
-//                    $miDB->exec($insercion);
+                    //$insercion= 'insert into T02_Departamento values ("'.$aDatosCadaDepartamento[":codDepartamento"].'","'.$aDatosCadaDepartamento[":desDepartamento"].'",now(),"'.$aDatosCadaDepartamento[":volumenNegocioDepartamento"].'",null)';
+                    //echo "<span> $insercion </span><br>";
+                    //$miDB->exec($insercion);
+
                     //insercion con consulta preparada
                     //iniciamos consulta dentro de un heredoc
                     $sqlInsert = <<<sql
