@@ -127,22 +127,6 @@
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                 </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Aplicación resumen MtoDeDepartamentosTema4. (Incluir PHPDoc y versionado en el repositorio GIT)</td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Aplicación resumen MtoDeDepartamentos POO y multicapa.</td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                </tr>
                 
             </tbody>
             
