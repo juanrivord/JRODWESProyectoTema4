@@ -64,10 +64,10 @@
             ]
         ];
 
-        foreach ($aDepartamentosnuevos as $aDatosCadaDepartamento) {
-            //insercion con consulta preparada
-            //iniciamos consulta dentro de un heredoc
-            $sqlInsert = <<<sql
+        //insercion con consulta preparada
+        //iniciamos consulta dentro de un heredoc
+        
+        $sqlInsert = <<<sql
                     INSERT INTO T02_Departamento VALUES (
                     :codDepartamento,
                     :desDepartamento,
@@ -75,8 +75,11 @@
                     :volumenNegocioDepartamento,
                     :fechaBajaDepartamento)
                     sql;
-            //preparamos la insercion
-            $insercionDepartamento = $miDB->prepare($sqlInsert);
+
+        //preparamos la insercion
+        $insercionDepartamento = $miDB->prepare($sqlInsert);
+
+        foreach ($aDepartamentosnuevos as $aDatosCadaDepartamento) {
             //ejecutar la insercion
             $insercionDepartamento->execute($aDatosCadaDepartamento);
         }
