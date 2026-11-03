@@ -2,4 +2,4 @@
 
 DROP DATABASE IF EXISTS DBJRODWESProyectoTema4;
 
-DROP USER IF EXISTS 'userJRODWESProyectoTema4'@'localhost';
+DROP USER IF EXISTS 'userJRODWESProyectoTema4'@'%';
