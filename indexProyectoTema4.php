@@ -100,10 +100,9 @@
                 </tr>
                 <tr>
                     <td>6</td>
-                    <td>Pagina web que cargue registros en la tabla Departamento desde un array departamentosnuevos
-                        utilizando una consulta preparada.</td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
+                    <td>Pagina web que cargue registros en la tabla Departamento desde un array "departamentosnuevos" utilizando una consulta preparada.</td>
+                    <td><a class="btn btn-ejecutar" href="./codigoPHP/ejercicio6.php">Ejecutar</a></td>
+                    <td><a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio6.php">Codigo</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                 </tr>
