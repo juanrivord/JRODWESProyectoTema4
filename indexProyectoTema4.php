@@ -112,8 +112,8 @@
                         Departamento de nuestra base de datos. (IMPORTAR). El fichero importado se encuentra en el
                         directorio .../tmp/ del servidor.
                     </td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
+                    <td><a class="btn btn-ejecutar" href="./codigoPHP/ejercicio7.php">Ejecutar</a></td>
+                    <td><a class="btn btn-codigo" href="./mostrarcodigo/muestrajercicio7.php">Codigo</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                 </tr>
@@ -122,8 +122,8 @@
                     <td>Página web que toma datos (código y descripción) de la tabla Departamento y guarda en un
                         fichero departamento.xml. (COPIA DE SEGURIDAD / EXPORTAR). El fichero exportado se
                         encuentra en el directorio .../tmp/ del servidor.</td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
-                    <td><a class="bloqueado">Bloqueado</a></td>
+                    <td><a class="btn btn-ejecutar" href="./codigoPHP/ejercicio8.php">Ejecutar</a></td>
+                    <td><a class="btn btn-codigo" href="./mostrarcodigo/muestrajercicio8.php">Codigo</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                 </tr>
