@@ -55,9 +55,8 @@
                         // Iniciamos la transaccion para asegurar que o se importan todos, o ninguno
                         $miDB->beginTransaction();
 
-                        // Preparamos la consulta de inserción con INSERT IGNORE para saltar duplicados
                         $sqlInsert = <<<sql
-                        INSERT IGNORE INTO T02_Departamento (
+                        INSERT INTO T02_Departamento (
                         T02_CodDepartamento,
                         T02_DescDepartamento,
                         T02_FechaCreacionDepartamento,
@@ -111,7 +110,7 @@
 
                         echo "<div class='mensaje-exito'>";
                         echo "<h3>Importación completada con éxito.</h3>";
-                        echo "<p>Se han importado <b>{$registrosImportados}</b> nuevos departamentos desde el archivo XML a la base de datos (los duplicados se han omitido).</p>";
+                        echo "<p>Se han importado <b>{$registrosImportados}</b> nuevos departamentos desde el archivo XML a la base de datos.</p>";
                         echo "</div>";
                     } else {
                         echo "<div class='error'>El archivo XML esta vacio o no tiene el formato correcto.</div>";
