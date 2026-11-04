@@ -33,7 +33,6 @@
        
         //creacion de conexion 
         $miDB = new PDO(HOST, USER, PASSWORD); // Conexión PDO
-        $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = 'SELECT T02_CodDepartamento, T02_DescDepartamento,T02_FechaCreacionDepartamento,T02_VolumenDeNegocio,T02_FechaBajaDepartamento FROM T02_Departamento';
         $consultaPreparada = $miDB->prepare($sql);

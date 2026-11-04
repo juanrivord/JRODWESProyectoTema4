@@ -33,7 +33,6 @@
        
         //creacion de conexion 
         $miDB = new PDO(HOST, USER, PASSWORD); // Conexión PDO
-        $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = 'SELECT T02_CodDepartamento, T02_DescDepartamento,T02_FechaCreacionDepartamento,T02_VolumenDeNegocio,T02_FechaBajaDepartamento FROM T02_Departamento';
         $consultaPreparada = $miDB->prepare($sql);
@@ -41,73 +40,43 @@
 
         if ($consultaPreparada->rowCount() > 0) {
 
-            // Instanciamos el objeto DOMDocument (versión 1.0, codificación UTF-8)
-            $documentoXML = new DOMDocument('1.0', 'UTF-8');
-            // Formatear la salida para que el XML tenga saltos de línea (sea legible)
-            $documentoXML->formatOutput = true;
+        $aDepartamentos = [];
 
-            // Creamos el elemento raiz departamentos y lo añadimos al documento
-            // Crea un nuevo nodo elemento: https://www.php.net/manual/es/domdocument.createelement.php
-            $raiz = $documentoXML->createElement('departamentos');
-            
-            // Añade un nuevo hijo al final de los hijos: https://www.php.net/manual/es/domnode.appendchild.php
-            $documentoXML->appendChild($raiz);
+        // Recorremos los registros de la base de datos
+        while ($oDepartamento = $consultaPreparada->fetchObject()) {
+            // Añadimos cada departamento como un array asociativo dentro del array principal
+            $aDepartamentos[] = [
+                'CodDepartamento' => $oDepartamento->T02_CodDepartamento,
+                'DescDepartamento' => $oDepartamento->T02_DescDepartamento,
+                'FechaCreacionDepartamento' => $oDepartamento->T02_FechaCreacionDepartamento,
+                'VolumenDeNegocio' => $oDepartamento->T02_VolumenDeNegocio,
+                'FechaBajaDepartamento' => $oDepartamento->T02_FechaBajaDepartamento
+            ];
+        }
+        // Convertimos el array a formato texto JSON
+        // https://www.php.net/manual/es/function.json-encode.php
+        $textoJSON = json_encode($aDepartamentos, JSON_PRETTY_PRINT);
 
-            // Recorremos los registros de la base de datos
-            while ($oDepartamento = $consultaPreparada->fetchObject()) {
+        // Guardamos el texto JSON en el archivo
+        // https://www.php.net/manual/es/function.file-put-contents.php
+        $jsonGenerado = file_put_contents($_SERVER["DOCUMENT_ROOT"] . '/JRODWESProyectoTema4/tmp/' . 'departamentos.json', $textoJSON);
 
-                // Creamos el departamento para cada registro
-                // Uso de createElement: https://www.php.net/manual/es/domdocument.createelement.php
-                $sDepartamento = $documentoXML->createElement('departamento');
+        if ($jsonGenerado !== false) {
+            // Ruta absoluta web que el navegador necesita para encontrar el archivo
+            $rutaEnlaceWeb = '/JRODWESProyectoTema4/tmp/departamentos.json';
 
-                // Creamos el codigo, añadimos el texto y lo colgamos de departamento
-                $sCodigo = $documentoXML->createElement('CodDepartamento');
-                $sCodigo->appendChild($documentoXML->createTextNode($oDepartamento->T02_CodDepartamento));
-                $sDepartamento->appendChild($sCodigo);
-
-                // Creamos la descripcion, añadimos el texto y lo colgamos de departamento
-                $sDescripcion = $documentoXML->createElement('DescDepartamento');
-                $sDescripcion->appendChild($documentoXML->createTextNode($oDepartamento->T02_DescDepartamento));
-                $sDepartamento->appendChild($sDescripcion);
-
-                // Creamos la fecha de creacion, añadimos la fecha y lo colgamos de departamento
-                $sFechaCreacion = $documentoXML->createElement('FechaCreacionDepartamento');
-                $sFechaCreacion->appendChild($documentoXML->createTextNode($oDepartamento->T02_FechaCreacionDepartamento));
-                $sDepartamento->appendChild($sFechaCreacion);
-                
-                // Creamos el volumen, añadimos el texto y lo colgamos de departamento
-                $sVolumen = $documentoXML->createElement('VolumenDeNegocio');
-                $sVolumen->appendChild($documentoXML->createTextNode($oDepartamento->T02_VolumenDeNegocio));
-                $sDepartamento->appendChild($sVolumen); 
-
-                // Creamos la fecha de creacion, añadimos la fecha y lo colgamos de departamento
-                $sFechaBaja = $documentoXML->createElement('FechaBajaDepartamento');
-                // Si la fecha es null o viene vacía, le pasamos un string vacío ''
-                $sFechaBaja->appendChild($documentoXML->createTextNode($oDepartamento->T02_FechaBajaDepartamento ?? ''));
-                $sDepartamento->appendChild($sFechaBaja);
-
-                // Colgamos el departamento completo de la raiz departamentos
-                $raiz->appendChild($sDepartamento);
-            }
-
-            // Guardamos el archivo XML generado en el servidor
-            // Guarda el documento XML en un fichero: https://www.php.net/manual/es/domdocument.save.php
-            if ($documentoXML->save($_SERVER["DOCUMENT_ROOT"] . '/JRODWESProyectoTema4/tmp/departamentos.xml')) {
-                $documentoXML->save($_SERVER["DOCUMENT_ROOT"] . '/JRODWESProyectoTema4/tmp/departamentos.xml');
-                // Mostramos el mensaje y el enlace web
-                echo "<div class='mensaje-exito'>";
-                echo "<h3>Exportacion completada con exito.</h3>";
-                echo "<p>El archivo se ha guardado en: <b>".$_SERVER['DOCUMENT_ROOT'] ."/JRODWESProyectoTema4/tmp/departamentos.xml</b></p>";
-                echo "<a href='../tmp/departamentos.xml' target='_blank' style='color: #155724; font-weight: bold; text-decoration: underline;'>Ver archivo XML</a>";
-                echo "</div>"; 
-            }else{
-                echo "<div class='mensaje-exito'>";
-                echo "<h3>ERROR: El archivo no se ha guardado.</h3>";
-                echo "</div>";
-            }
-            
-
-                                         
+            // Mostramos el mensaje y el enlace web
+            echo "<div class='mensaje-exito'>";
+            echo "<h3>Exportacion completada con exito.</h3>";
+            echo "<p>El archivo se ha guardado en: <b>{$rutaFicheroGuardar}</b></p>";
+            echo "<a href='../tmp/departamentos.json' target='_blank' style='color: #155724; font-weight: bold; text-decoration: underline;'>Ver archivo JSON</a>";
+            echo "</div>";
+        } else {
+            echo "<div class='error'>Error: No se pudo escribir el archivo JSON. Verifica los permisos de la carpeta.</div>";
+        }
+                    
+        }else{
+            echo "<div class='error'>Error: No se pudo escribir el archivo JSON. Verifica los permisos de la carpeta.</div>";
         }
 
         

@@ -32,7 +32,6 @@
                 
                 //creacion de conexion 
                 $miDB = new PDO(HOST,USER,PASSWORD); // Conexión PDO
-                $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 
                 //array de datos de departamentos
                 //codigo, descripcion, volumen

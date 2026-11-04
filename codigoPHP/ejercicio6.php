@@ -36,7 +36,6 @@
         $fechaActual = new DateTime();
         //creacion de conexion 
         $miDB = new PDO(HOST, USER, PASSWORD); // Conexión PDO
-        $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         //array de datos de departamentos
         //codigo, descripcion, fecha alta, volumen

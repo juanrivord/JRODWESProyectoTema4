@@ -76,7 +76,6 @@
         // Comienza la conexión de base de datos con gestion de extensiones
         try{ 
             $miDB = new PDO(HOST,USER,PASSWORD); // Conexión PDO
-            $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
             // Construccion de la sentencia SQL concatenando  
