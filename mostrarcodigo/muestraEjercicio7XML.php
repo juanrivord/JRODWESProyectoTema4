@@ -10,7 +10,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
     </head>
     <body>
         <?php
-        $archivo = '../codigoPHP/ejercicio8.php';
+        $archivo = '../codigoPHP/ejercicio7XML.php';
  
         if ($archivo && file_exists($archivo) ) {
         echo "<a href='../indexProyectoTema4.php'>⬅ Volver al inicio</a><hr>";

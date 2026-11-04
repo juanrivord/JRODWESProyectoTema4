@@ -55,9 +55,9 @@
                         // Iniciamos la transaccion para asegurar que o se importan todos, o ninguno
                         $miDB->beginTransaction();
 
-                        // Preparamos la consulta de inserción con parámetros con nombre
+                        // Preparamos la consulta de inserción con INSERT IGNORE para saltar duplicados
                         $sqlInsert = <<<sql
-                        INSERT INTO T02_Departamento (
+                        INSERT IGNORE INTO T02_Departamento (
                         T02_CodDepartamento,
                         T02_DescDepartamento,
                         T02_FechaCreacionDepartamento,
@@ -100,7 +100,10 @@
                                 ':FechaBajaDepartamento' => $fechaBajaComprobada
                             ]);
 
-                            $registrosImportados++;
+                            // rowCount() devuelve 1 si se insertó, o 0 si se ignoró por clave duplicada
+                            if ($sentenciaPreparada->rowCount() > 0) {
+                                $registrosImportados++;
+                            }
                         }
 
                         // Si el bucle termina sin errores, confirmamos la transacción
@@ -108,13 +111,13 @@
 
                         echo "<div class='mensaje-exito'>";
                         echo "<h3>Importación completada con éxito.</h3>";
-                        echo "<p>Se han importado <b>{$registrosImportados}</b> departamentos desde el archivo XML a la base de datos.</p>";
+                        echo "<p>Se han importado <b>{$registrosImportados}</b> nuevos departamentos desde el archivo XML a la base de datos (los duplicados se han omitido).</p>";
                         echo "</div>";
                     } else {
                         echo "<div class='error'>El archivo XML esta vacio o no tiene el formato correcto.</div>";
                     }
                 } catch (PDOException $miExceptionPDO) {
-                    // Si ocurre un error, deshacemos todos los cambios
+                    // Si ocurre un error diferente, deshacemos todos los cambios
                     $miDB->rollBack();
 
                     echo "<div class='error'>";
@@ -134,7 +137,8 @@
 </body>
 <footer>
     <address>
-        <p>&copy; 2025-2026 <span><a href="../../index.html">Juan Rivera Ordoñez</a></span>- I.E.S. Los Sauces</p>
+        <p>&copy; 2025-2026 <span><a href="../../index.html">Juan Rivera Ordoñez</a></span>I.E.S. Los Sauces
+</p>
         <a href="https://github.com/juanrivord/JRODWESProyectoTema4"><img src="../webroot/images/github.png"
                 alt="Imagen de github"></a>
         <a href="../indexProyectoTema4.php"><img src="../webroot/images/casita.png" alt="Imagen de una casita"></a>

@@ -112,8 +112,14 @@
                         Departamento de nuestra base de datos. (IMPORTAR). El fichero importado se encuentra en el
                         directorio .../tmp/ del servidor.
                     </td>
-                    <td><a class="btn btn-ejecutar" href="./codigoPHP/ejercicio7.php">Ejecutar</a></td>
-                    <td><a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio7.php">Codigo</a></td>
+                    <td>
+                        <a class="btn btn-ejecutar" href="./codigoPHP/ejercicio7XML.php">Ejecutar XML</a>
+                        <a class="bloqueado" href="./codigoPHP/ejercicio7JSON.php">Ejecutar JSON</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio7XML.php">Codigo XML</a>
+                        <a class="bloqueado" href="./mostrarcodigo/muestraEjercicio7JSON.php">Codigo JSON</a>
+                    </td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                 </tr>
@@ -122,8 +128,14 @@
                     <td>Página web que toma datos (código y descripción) de la tabla Departamento y guarda en un
                         fichero departamento.xml. (COPIA DE SEGURIDAD / EXPORTAR). El fichero exportado se
                         encuentra en el directorio .../tmp/ del servidor.</td>
-                    <td><a class="btn btn-ejecutar" href="./codigoPHP/ejercicio8.php">Ejecutar</a></td>
-                    <td><a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio8.php">Codigo</a></td>
+                    <td>
+                        <a class="btn btn-ejecutar" href="./codigoPHP/ejercicio8XML.php">Ejecutar XML</a>
+                        <a class="bloqueado" href="./codigoPHP/ejercicio8JSON.php">Ejecutar JSON</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio8XML.php">Codigo XML</a>
+                        <a class="bloqueado" href="./mostrarcodigo/muestraEjercicio8JSON.php">Codigo JSON</a>
+                    </td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                 </tr>
