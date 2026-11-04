@@ -22,7 +22,7 @@
     /* 
      * Juan Rivera Ordoñez
      * 03/11/2026
-     * 8. Pagina web que toma datos de una BD y los pasa a un archivo XML
+     * 8. Pagina web que toma datos de una BD y los pasa a un archivo JSON
      */
     require_once '../config/configDBPDO.php';
     require_once '../core/231018libreriaValidacion.php';

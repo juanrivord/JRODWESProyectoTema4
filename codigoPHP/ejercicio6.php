@@ -41,25 +41,25 @@
         //codigo, descripcion, fecha alta, volumen
         $aDepartamentosnuevos = [
             [
-                ":codDepartamento" => "DDD",
-                ":desDepartamento" => "descripcion a",
-                ":fechaAltaDepartamento" => "2025-05-07",
-                ":volumenNegocioDepartamento" => 33456.36,
-                ":fechaBajaDepartamento" => null,
+                "codDepartamento" => "DDD",
+                "desDepartamento" => "descripcion a",
+                "fechaAltaDepartamento" => "2025-05-07",
+                "volumenNegocioDepartamento" => 33456.36,
+                "fechaBajaDepartamento" => null,
             ],
             [
-                ":codDepartamento" => "EEE",
-                ":desDepartamento" => "descripcion b",
-                ":fechaAltaDepartamento" => "2020-05-07",
-                ":volumenNegocioDepartamento" => 10.43,
-                ":fechaBajaDepartamento" => $fechaActual->format("Y-m-d"),
+                "codDepartamento" => "EEE",
+                "desDepartamento" => "descripcion b",
+                "fechaAltaDepartamento" => "2020-05-07",
+                "volumenNegocioDepartamento" => 10.43,
+                "fechaBajaDepartamento" => $fechaActual->format("Y-m-d"),
             ],
             [
-                ":codDepartamento" => "FFF",
-                ":desDepartamento" => "descripcion c",
-                ":fechaAltaDepartamento" => $fechaActual->format("Y-m-d"),
-                ":volumenNegocioDepartamento" => 480000.01,
-                ":fechaBajaDepartamento" => null,
+                "codDepartamento" => "FFF",
+                "desDepartamento" => "descripcion c",
+                "fechaAltaDepartamento" => $fechaActual->format("Y-m-d"),
+                "volumenNegocioDepartamento" => 480000.01,
+                "fechaBajaDepartamento" => null,
             ]
         ];
 

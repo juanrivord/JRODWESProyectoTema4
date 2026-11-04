@@ -22,40 +22,41 @@
     /* 
      * Juan Rivera Ordoñez
      * 03/11/2026
-     * 7. Pagina web que toma datos de un fichero xml y los añade a la tabla Departamento.
+     * 7. Pagina web que toma datos de un fichero json y los añade a la tabla Departamento.
      */
     
     require_once '../config/configDBPDO.php';
     require_once '../core/231018libreriaValidacion.php';
 
     echo "<a href='../indexProyectoTema4.php'>⬅ Volver al inicio</a><br><br>";
+    // Calculamos la ruta del archivo JSON en la carpeta tmp
+    $rutaFicheroJSON = $_SERVER["DOCUMENT_ROOT"] . '/JRODWESProyectoTema4/tmp/departamentos.json';
 
-            // Calculamos la ruta del archivo XML en la carpeta tmp
-            $rutaFicheroXML = $_SERVER["DOCUMENT_ROOT"] . '/JRODWESProyectoTema4/tmp/departamentos.xml';
+    // Comprobamos si el archivo existe
+    if (file_exists($rutaFicheroJSON)) {
 
-            // Comprobamos si el archivo existe antes de intentar hacer nada
-            if (file_exists($rutaFicheroXML)) {
+        // Leetodo el contenido del archivo JSON como una unica cadena de texto
+        // https://www.php.net/manual/es/function.file-get-contents.php
+        $textoJSON = file_get_contents($rutaFicheroJSON);
 
-                require_once '../config/configDBPDO.php';
+        // Convierte el texto JSON a un array asociativo de PHP
+        // https://www.php.net/manual/es/function.json-decode.php
+        $aDepartamentos = json_decode($textoJSON, true);
 
-                try {
-                    // Instanciacion del objeto PDO
-                    $miDB = new PDO(HOST, USER, PASSWORD);
+        // Verificamos que el JSON no este vacio y sea un array valido
+        if (is_array($aDepartamentos) && count($aDepartamentos) > 0) {
 
-                    // Instanciamos DOMDocument y cargamos el archivo XML
-                    $documentoXML = new DOMDocument();
-                    $documentoXML->load($rutaFicheroXML);
+            require_once '../config/configDBPDO.php';
 
-                    // Obtenemos una lista con todos los elementos departamento
-                    $listaDepartamentosXML = $documentoXML->getElementsByTagName('departamento');
+            try {
+                // Instanciacion del objeto PDO
+                $miDB = new PDO(HOST, USER, PASSWORD);
 
-                    // Verificamos que el XML no este vacío
-                    if ($listaDepartamentosXML->length > 0) {
+                // Iniciamos la transaccion para asegurar que o se importan todos, o ninguno
+                $miDB->beginTransaction();
 
-                        // Iniciamos la transaccion para asegurar que o se importan todos, o ninguno
-                        $miDB->beginTransaction();
-
-                        $sqlInsert = <<<sql
+                // Preparamos la consulta de insercion
+                $sqlInsert = <<<sql
                         INSERT INTO T02_Departamento (
                         T02_CodDepartamento,
                         T02_DescDepartamento,
@@ -70,67 +71,53 @@
                         :FechaBajaDepartamento);
                         sql;
 
-                        $sentenciaPreparada = $miDB->prepare($sqlInsert);
+                $registrosImportados = 0;
 
-                        $registrosImportados = 0;
+                // Recorremos cada departamento del array 
+                foreach ($aDepartamentos as $departamento) {
 
-                        // Recorremos cada departamento del XML
-                        foreach ($listaDepartamentosXML as $departamento) {
-                            // Comprobamos y obtenemos cada nodo de forma segura
-                            $CodDepartamentoAntes = $departamento->getElementsByTagName('CodDepartamento')->item(0);
-                            $nodoDesc = $departamento->getElementsByTagName('DescDepartamento')->item(0);
-                            $nodoFechaCreacion = $departamento->getElementsByTagName('FechaCreacionDepartamento')->item(0);
-                            $nodoVolumen = $departamento->getElementsByTagName('VolumenDeNegocio')->item(0);
-                            $nodoFechaBaja = $departamento->getElementsByTagName('FechaBajaDepartamento')->item(0);
+                    // Extraemos los valores.
+                    $codigo = $departamento['CodDepartamento'];
+                    $descripcion = $departamento['DescDepartamento'];
+                    $fechaAlta = $departamento['FechaCreacionDepartamento'];
+                    $volumen = $departamento['VolumenDeNegocio'];
+                    // Si FechaBaja esta vacia, le asignamos null.
+                    $fechaBaja = (!empty($departamento['FechaBajaDepartamento'])) ? $departamento['FechaBajaDepartamento'] : null;
 
-                            $codDepartamento = $CodDepartamentoAntes ? $CodDepartamentoAntes->nodeValue : '';
-                            $desDepartamento = $nodoDesc ? $nodoDesc->nodeValue : '';
-                            $fechaCreacionDepartamento = $nodoFechaCreacion ? $nodoFechaCreacion->nodeValue : null;
-                            $volumenDeNegocio = $nodoVolumen ? $nodoVolumen->nodeValue : 0;
-                            
-                            $fechaBajaComprobada = ($nodoFechaBaja && trim($nodoFechaBaja->nodeValue) !== '') ? $nodoFechaBaja->nodeValue : null;
+                    // Ejecutamos la consulta preparada pasando un array asociativo con los nombres de los campos
+                    $sentenciaPreparada->execute([
+                        ':CodDepartamento' => $codigo,
+                        ':DescDepartamento' => $descripcion,
+                        ':FechaCreacionDepartamento' => $fechaAlta,
+                        ':VolumenDeNegocio' => $volumen,
+                        ':FechaBajaDepartamento' => $fechaBaja
+                    ]);
 
-                            // Ejecutamos la consulta preparada
-                            $sentenciaPreparada->execute([
-                                ':CodDepartamento' => $codDepartamento,
-                                ':DescDepartamento' => $desDepartamento,
-                                ':FechaCreacionDepartamento' => $fechaCreacionDepartamento,
-                                ':VolumenDeNegocio' => $volumenDeNegocio,
-                                ':FechaBajaDepartamento' => $fechaBajaComprobada
-                            ]);
-
-                            // rowCount() devuelve 1 si se insertó, o 0 si se ignoró por clave duplicada
-                            if ($sentenciaPreparada->rowCount() > 0) {
-                                $registrosImportados++;
-                            }
-                        }
-
-                        // Si el bucle termina sin errores, confirmamos la transacción
-                        $miDB->commit();
-
-                        echo "<div class='mensaje-exito'>";
-                        echo "<h3>Importación completada con éxito.</h3>";
-                        echo "<p>Se han importado <b>{$registrosImportados}</b> nuevos departamentos desde el archivo XML a la base de datos .</p>";
-                        echo "</div>";
-                    } else {
-                        echo "<div class='error'>El archivo XML esta vacio o no tiene el formato correcto.</div>";
-                    }
-                } catch (PDOException $miExceptionPDO) {
-                    // Si ocurre un error diferente, deshacemos todos los cambios
-                    $miDB->rollBack();
-
-                    echo "<div class='error'>";
-                    echo "<h3 style='margin-top:0;'>Error al importar en la base de datos.</h3>";
-                    echo "<p>La transaccion ha sido cancelada. Ningun registro ha sido importado.</p>";
-                    echo "<p><b>Mensaje:</b> " . $miExceptionPDO->getMessage() . "</p>";
-                    echo "<p><b>Código:</b> " . $miExceptionPDO->getCode() . "</p>";
-                    echo "</div>";
-                } finally {
-                    unset($miDB);
+                    $registrosImportados++;
                 }
-            }else{
-                echo("No existe el fichero departamento.xml");
+
+                // Si el bucle termina sin errores, confirmamos la transacción
+                $miDB->commit();
+
+                echo "<div class='mensaje-exito'>";
+                echo "<h3>Importación completada con éxito.</h3>";
+                echo "<p>Se han importado <b>{$registrosImportados}</b> departamentos desde el archivo JSON a la base de datos.</p>";
+                echo "</div>";
+            } catch (PDOException $miExceptionPDO) {
+                // Si ocurre un error, deshacemos todos los cambios
+                $miDB->rollBack();
+
+                echo "<div class='error'>";
+                echo "<h3 style='margin-top:0;'>Error al importar en la base de datos.</h3>";
+                echo "<p>La transaccion ha sido cancelada. Ningun registro ha sido importado.</p>";
+                echo "<p><b>Mensaje:</b> " . $miExceptionPDO->getMessage() . "</p>";
+                echo "<p><b>Código:</b> " . $miExceptionPDO->getCode() . "</p>";
+                echo "</div>";
+            } finally {
+                unset($miDB);
             }
+        }
+    }
         ?>
 
 </body>
