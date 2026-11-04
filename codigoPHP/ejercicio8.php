@@ -82,32 +82,32 @@
 
                 // Creamos la fecha de creacion, añadimos la fecha y lo colgamos de departamento
                 $sFechaBaja = $documentoXML->createElement('FechaBajaDepartamento');
-                $sFechaBaja->appendChild($documentoXML->createTextNode($oDepartamento->T02_FechaBajaDepartamento));
+                // Si la fecha es null o viene vacía, le pasamos un string vacío ''
+                $sFechaBaja->appendChild($documentoXML->createTextNode($oDepartamento->T02_FechaBajaDepartamento ?? ''));
                 $sDepartamento->appendChild($sFechaBaja);
 
                 // Colgamos el departamento completo de la raiz departamentos
                 $raiz->appendChild($sDepartamento);
             }
 
-            // Preparamos el directorio /tmp/
-            $directorioTMP = dirname($_SERVER['DOCUMENT_ROOT']) . 'JRODWESProyectoTema4/tmp/';
-
-            // Ruta completa absoluta para que el servidor guarde el archivo
-            $rutaFicheroGuardar = $directorioTMP . 'departamentos.xml';
-
             // Guardamos el archivo XML generado en el servidor
             // Guarda el documento XML en un fichero: https://www.php.net/manual/es/domdocument.save.php
-            $documentoXML->save($rutaFicheroGuardar);
+            if ($documentoXML->save($_SERVER["DOCUMENT_ROOT"] . '/JRODWESProyectoTema4/tmp/departamentos.xml')) {
+                $documentoXML->save($_SERVER["DOCUMENT_ROOT"] . '/JRODWESProyectoTema4/tmp/departamentos.xml');
+                // Mostramos el mensaje y el enlace web
+                echo "<div class='mensaje-exito'>";
+                echo "<h3>Exportacion completada con exito.</h3>";
+                echo "<p>El archivo se ha guardado en: <b>".$_SERVER['DOCUMENT_ROOT'] ."/JRODWESProyectoTema4/tmp/departamentos.xml</b></p>";
+                echo "<a href='../tmp/departamentos.xml' target='_blank' style='color: #155724; font-weight: bold; text-decoration: underline;'>Ver archivo XML</a>";
+                echo "</div>"; 
+            }else{
+                echo "<div class='mensaje-exito'>";
+                echo "<h3>ERROR: El archivo no se ha guardado.</h3>";
+                echo "</div>";
+            }
+            
 
-            // Ruta relativa que el navegador necesita para encontrar el archivo desde 'codigoPHP'
-            $rutaEnlaceWeb = '../tmp/departamentos.xml';
-
-            // Mostramos el mensaje y el enlace web
-            echo "<div class='mensaje-exito'>";
-            echo "<h3>Exportacion completada con exito.</h3>";
-            echo "<p>El archivo se ha guardado en: <b>{$rutaFicheroGuardar}</b></p>";
-            echo "<a href='{$rutaEnlaceWeb}' target='_blank' style='color: #155724; font-weight: bold; text-decoration: underline;'>Ver archivo XML</a>";
-            echo "</div>";                              
+                                         
         }
 
         
