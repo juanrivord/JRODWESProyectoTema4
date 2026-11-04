@@ -113,7 +113,7 @@
                         directorio .../tmp/ del servidor.
                     </td>
                     <td><a class="btn btn-ejecutar" href="./codigoPHP/ejercicio7.php">Ejecutar</a></td>
-                    <td><a class="btn btn-codigo" href="./mostrarcodigo/muestrajercicio7.php">Codigo</a></td>
+                    <td><a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio7.php">Codigo</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                 </tr>

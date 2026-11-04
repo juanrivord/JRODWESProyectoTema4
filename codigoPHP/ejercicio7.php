@@ -24,25 +24,112 @@
      * 03/11/2026
      * 7. Pagina web que toma datos de un fichero xml y los añade a la tabla Departamento.
      */
+    
     require_once '../config/configDBPDO.php';
     require_once '../core/231018libreriaValidacion.php';
 
     echo "<a href='../indexProyectoTema4.php'>⬅ Volver al inicio</a><br><br>";
 
-    try {
-       
-        //creacion de conexion 
-        $miDB = new PDO(HOST, USER, PASSWORD); // Conexión PDO
-        $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // Calculamos la ruta del archivo XML en la carpeta tmp
+            $rutaFicheroXML = $_SERVER["DOCUMENT_ROOT"] . '/JRODWESProyectoTema4/tmp/departamentos.xml';
 
-        
-    } catch (PDOException $e) {
-        echo "<span style='color:red;'> Codigo de error: " . $e->getCode() . " <span><br/>";
-        echo "<span style='color:red;'> Mensaje de error: " . $e->getMessage() . " <span><br/>";
-    } finally {
-        unset($miDB);
-    }
-    ?>
+            // Comprobamos si el archivo existe antes de intentar hacer nada
+            if (file_exists($rutaFicheroXML)) {
+
+                require_once '../config/configDBPDO.php';
+
+                try {
+                    // Instanciacion del objeto PDO
+                    $miDB = new PDO(HOST, USER, PASSWORD);
+
+                    // Instanciamos DOMDocument y cargamos el archivo XML
+                    $documentoXML = new DOMDocument();
+                    $documentoXML->load($rutaFicheroXML);
+
+                    // Obtenemos una lista con todos los elementos departamento
+                    $listaDepartamentosXML = $documentoXML->getElementsByTagName('departamento');
+
+                    // Verificamos que el XML no este vacío
+                    if ($listaDepartamentosXML->length > 0) {
+
+                        // Iniciamos la transaccion para asegurar que o se importan todos, o ninguno
+                        $miDB->beginTransaction();
+
+                        // Preparamos la consulta de inserción con parámetros con nombre
+                        $sqlInsert = <<<sql
+                        INSERT INTO T02_Departamento (
+                        T02_CodDepartamento,
+                        T02_DescDepartamento,
+                        T02_FechaCreacionDepartamento,
+                        T02_VolumenDeNegocio,
+                        T02_FechaBajaDepartamento)
+                        VALUES (
+                        :CodDepartamento,
+                        :DescDepartamento,
+                        :FechaCreacionDepartamento,
+                        :VolumenDeNegocio,
+                        :FechaBajaDepartamento);
+                        sql;
+
+                        $sentenciaPreparada = $miDB->prepare($sqlInsert);
+
+                        $registrosImportados = 0;
+
+                        // Recorremos cada departamento del XML
+                        foreach ($listaDepartamentosXML as $departamento) {
+                            // Comprobamos y obtenemos cada nodo de forma segura
+                            $nodoCod = $departamento->getElementsByTagName('CodDepartamento')->item(0);
+                            $nodoDesc = $departamento->getElementsByTagName('DescDepartamento')->item(0);
+                            $nodoFechaCreacion = $departamento->getElementsByTagName('FechaCreacionDepartamento')->item(0);
+                            $nodoVolumen = $departamento->getElementsByTagName('VolumenDeNegocio')->item(0);
+                            $nodoFechaBaja = $departamento->getElementsByTagName('FechaBajaDepartamento')->item(0);
+
+                            $codDepartamento = $nodoCod ? $nodoCod->nodeValue : '';
+                            $desDepartamento = $nodoDesc ? $nodoDesc->nodeValue : '';
+                            $fechaCreacionDepartamento = $nodoFechaCreacion ? $nodoFechaCreacion->nodeValue : null;
+                            $volumenDeNegocio = $nodoVolumen ? $nodoVolumen->nodeValue : 0;
+                            
+                            $fechaBajaComprobada = ($nodoFechaBaja && trim($nodoFechaBaja->nodeValue) !== '') ? $nodoFechaBaja->nodeValue : null;
+
+                            // Ejecutamos la consulta preparada
+                            $sentenciaPreparada->execute([
+                                ':CodDepartamento' => $codDepartamento,
+                                ':DescDepartamento' => $desDepartamento,
+                                ':FechaCreacionDepartamento' => $fechaCreacionDepartamento,
+                                ':VolumenDeNegocio' => $volumenDeNegocio,
+                                ':FechaBajaDepartamento' => $fechaBajaComprobada
+                            ]);
+
+                            $registrosImportados++;
+                        }
+
+                        // Si el bucle termina sin errores, confirmamos la transacción
+                        $miDB->commit();
+
+                        echo "<div class='mensaje-exito'>";
+                        echo "<h3>Importación completada con éxito.</h3>";
+                        echo "<p>Se han importado <b>{$registrosImportados}</b> departamentos desde el archivo XML a la base de datos.</p>";
+                        echo "</div>";
+                    } else {
+                        echo "<div class='error'>El archivo XML esta vacio o no tiene el formato correcto.</div>";
+                    }
+                } catch (PDOException $miExceptionPDO) {
+                    // Si ocurre un error, deshacemos todos los cambios
+                    $miDB->rollBack();
+
+                    echo "<div class='error'>";
+                    echo "<h3 style='margin-top:0;'>Error al importar en la base de datos.</h3>";
+                    echo "<p>La transaccion ha sido cancelada. Ningun registro ha sido importado.</p>";
+                    echo "<p><b>Mensaje:</b> " . $miExceptionPDO->getMessage() . "</p>";
+                    echo "<p><b>Código:</b> " . $miExceptionPDO->getCode() . "</p>";
+                    echo "</div>";
+                } finally {
+                    unset($miDB);
+                }
+            }else{
+                echo("No existe el fichero departamento.xml");
+            }
+        ?>
 
 </body>
 <footer>
