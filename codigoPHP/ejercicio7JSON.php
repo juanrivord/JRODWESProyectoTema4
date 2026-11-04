@@ -56,7 +56,7 @@
                 $miDB->beginTransaction();
 
                 // Preparamos la consulta de insercion
-                $sqlInsert = <<<sql
+                $consultaSQL = <<<sql
                         INSERT INTO T02_Departamento (
                         T02_CodDepartamento,
                         T02_DescDepartamento,
@@ -70,6 +70,8 @@
                         :VolumenDeNegocio,
                         :FechaBajaDepartamento);
                         sql;
+
+                $sentenciaPreparada = $miDB->prepare($consultaSQL);
 
                 $registrosImportados = 0;
 

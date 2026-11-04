@@ -114,11 +114,11 @@
                     </td>
                     <td>
                         <a class="btn btn-ejecutar" href="./codigoPHP/ejercicio7XML.php">Ejecutar XML</a>
-                        <a class="bloqueado" href="./codigoPHP/ejercicio7JSON.php">Ejecutar JSON</a>
+                        <a class="btn btn-ejecutar" href="./codigoPHP/ejercicio7JSON.php">Ejecutar JSON</a>
                     </td>
                     <td>
                         <a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio7XML.php">Codigo XML</a>
-                        <a class="bloqueado" href="./mostrarcodigo/muestraEjercicio7JSON.php">Codigo JSON</a>
+                        <a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio7JSON.php">Codigo JSON</a>
                     </td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
