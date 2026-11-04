@@ -79,11 +79,11 @@
                 echo "<h4>Transaccion correcta</h4> <br/>";
                 
                 //hacer query de la tabla
-                $consulta1 = $miDB->query('select * from T02_Departamento');
+                $consultaDepartamentos = $miDB->query('select * from T02_Departamento');
                 echo '<table>';
                 // mostrar la tabla
                 echo '<tr class="titulo"> <td>Codigo</td> <td>Descripcion</td><td>FechaCreacion</td><td>VolumenNegocio</td><td>FechaBaja</td></tr>';
-                while ($oDepartamento = $consulta1->fetchObject()) {
+                while ($oDepartamento = $consultaDepartamentos->fetchObject()) {
                     echo '<tr>';
                     echo '<td>' . $oDepartamento->T02_CodDepartamento . '</td>';
                     echo '<td>' . $oDepartamento->T02_DescDepartamento . '</td>';

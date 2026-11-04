@@ -30,33 +30,30 @@
     echo "<a href='../indexProyectoTema4.php'>⬅ Volver al inicio</a><br><br>";
 
     try {
-        //declaracion de variables de cuando se muestra la tabla
-        $fechaCreacionDepartamento;
-        $fechaBajaDepartamento;
         $fechaActual = new DateTime();
         //creacion de conexion 
         $miDB = new PDO(HOST, USER, PASSWORD); // Conexión PDO
 
         //array de datos de departamentos
-        //codigo, descripcion, fecha alta, volumen
+        //codigo, descripcion, fecha alta, volumen y fecha de baja
         $aDepartamentosnuevos = [
             [
                 "codDepartamento" => "DDD",
-                "desDepartamento" => "descripcion a",
+                "descDepartamento" => "descripcion a",
                 "fechaAltaDepartamento" => "2025-05-07",
                 "volumenNegocioDepartamento" => 33456.36,
                 "fechaBajaDepartamento" => null,
             ],
             [
                 "codDepartamento" => "EEE",
-                "desDepartamento" => "descripcion b",
+                "descDepartamento" => "descripcion b",
                 "fechaAltaDepartamento" => "2020-05-07",
                 "volumenNegocioDepartamento" => 10.43,
                 "fechaBajaDepartamento" => $fechaActual->format("Y-m-d"),
             ],
             [
                 "codDepartamento" => "FFF",
-                "desDepartamento" => "descripcion c",
+                "descDepartamento" => "descripcion c",
                 "fechaAltaDepartamento" => $fechaActual->format("Y-m-d"),
                 "volumenNegocioDepartamento" => 480000.01,
                 "fechaBajaDepartamento" => null,
@@ -64,12 +61,12 @@
         ];
 
         //insercion con consulta preparada
-        //iniciamos consulta dentro de un heredoc
+        //iniciamos consulta dentro de un heredoc para que se pueda leer
         
         $sqlInsert = <<<sql
                     INSERT INTO T02_Departamento VALUES (
                     :codDepartamento,
-                    :desDepartamento,
+                    :descDepartamento,
                     :fechaAltaDepartamento,
                     :volumenNegocioDepartamento,
                     :fechaBajaDepartamento)
@@ -78,19 +75,24 @@
         //preparamos la insercion
         $insercionDepartamento = $miDB->prepare($sqlInsert);
 
+        //ejecutamos la insercion por cada departamento
         foreach ($aDepartamentosnuevos as $aDatosCadaDepartamento) {
-            //ejecutar la insercion
-            $insercionDepartamento->execute($aDatosCadaDepartamento);
+            $insercionDepartamento->bindParam(":codDepartamento", $aDatosCadaDepartamento["codDepartamento"]);
+            $insercionDepartamento->bindParam(":descDepartamento", $aDatosCadaDepartamento["descDepartamento"]);
+            $insercionDepartamento->bindParam(":fechaAltaDepartamento", $aDatosCadaDepartamento["fechaAltaDepartamento"]);
+            $insercionDepartamento->bindParam(":volumenNegocioDepartamento", $aDatosCadaDepartamento["volumenNegocioDepartamento"]);
+            $insercionDepartamento->bindParam(":fechaBajaDepartamento", $aDatosCadaDepartamento["fechaBajaDepartamento"]);
+            $insercionDepartamento->execute();
         }
 
         echo "<h4>Insercion Completa</h4> <br/>";
 
         //hacer query de la tabla
-        $consulta1 = $miDB->query('select * from T02_Departamento');
+        $consultaDepartamentos = $miDB->query('select * from T02_Departamento');
         echo '<table>';
         // mostrar la tabla
         echo '<tr class="titulo"> <td>Codigo</td> <td>Descripcion</td><td>FechaCreacion</td><td>VolumenNegocio</td><td>FechaBaja</td></tr>';
-        while ($oDepartamento = $consulta1->fetchObject()) {
+        while ($oDepartamento = $consultaDepartamentos->fetchObject()) {
             echo '<tr>';
             echo '<td>' . $oDepartamento->T02_CodDepartamento . '</td>';
             echo '<td>' . $oDepartamento->T02_DescDepartamento . '</td>';
