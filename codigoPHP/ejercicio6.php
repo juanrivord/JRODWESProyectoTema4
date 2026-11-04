@@ -22,7 +22,7 @@
     /* 
      * Juan Rivera Ordoñez
      * 03/11/2026
-     * 6. Pagina web que carga registros en la tabla departamento desde un array
+     * 6. Pagina web que carga registros en la tabla departamento desde un array hardcodeado
      */
     require_once '../config/configDBPDO.php';
     require_once '../core/231018libreriaValidacion.php';
@@ -92,6 +92,7 @@
         echo '<table>';
         // mostrar la tabla
         echo '<tr class="titulo"> <td>Codigo</td> <td>Descripcion</td><td>FechaCreacion</td><td>VolumenNegocio</td><td>FechaBaja</td></tr>';
+        
         while ($oDepartamento = $consultaDepartamentos->fetchObject()) {
             echo '<tr>';
             echo '<td>' . $oDepartamento->T02_CodDepartamento . '</td>';
@@ -108,6 +109,7 @@
             echo '</tr>';
         }
         echo '</table>';
+
     } catch (PDOException $e) {
         echo "<span style='color:red;'> Codigo de error: " . $e->getCode() . " <span><br/>";
         echo "<span style='color:red;'> Mensaje de error: " . $e->getMessage() . " <span><br/>";
