@@ -57,9 +57,12 @@
         // https://www.php.net/manual/es/function.json-encode.php
         $textoJSON = json_encode($aDepartamentos, JSON_PRETTY_PRINT);
 
+        // Ruta completa absoluta para que el servidor guarde el archivo
+        $rutaFicheroGuardar = $_SERVER["DOCUMENT_ROOT"] . '/JRODWESProyectoTema4/tmp/' . 'departamentos.json';
+
         // Guardamos el texto JSON en el archivo
         // https://www.php.net/manual/es/function.file-put-contents.php
-        $jsonGenerado = file_put_contents($_SERVER["DOCUMENT_ROOT"] . '/JRODWESProyectoTema4/tmp/' . 'departamentos.json', $textoJSON);
+        $jsonGenerado = file_put_contents($rutaFicheroGuardar, $textoJSON);
 
         if ($jsonGenerado !== false) {
             // Ruta absoluta web que el navegador necesita para encontrar el archivo

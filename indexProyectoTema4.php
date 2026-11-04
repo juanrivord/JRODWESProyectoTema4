@@ -130,11 +130,11 @@
                         encuentra en el directorio .../tmp/ del servidor.</td>
                     <td>
                         <a class="btn btn-ejecutar" href="./codigoPHP/ejercicio8XML.php">Ejecutar XML</a>
-                        <a class="bloqueado" href="./codigoPHP/ejercicio8JSON.php">Ejecutar JSON</a>
+                        <a class="btn btn-ejecutar" href="./codigoPHP/ejercicio8JSON.php">Ejecutar JSON</a>
                     </td>
                     <td>
                         <a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio8XML.php">Codigo XML</a>
-                        <a class="bloqueado" href="./mostrarcodigo/muestraEjercicio8JSON.php">Codigo JSON</a>
+                        <a class="btn btn-codigo" href="./mostrarcodigo/muestraEjercicio8JSON.php">Codigo JSON</a>
                     </td>
                     <td><a class="bloqueado">Bloqueado</a></td>
                     <td><a class="bloqueado">Bloqueado</a></td>
