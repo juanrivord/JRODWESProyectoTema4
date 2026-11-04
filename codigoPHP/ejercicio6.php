@@ -36,7 +36,7 @@
 
         //array de datos de departamentos
         //codigo, descripcion, fecha alta, volumen y fecha de baja
-        $aDepartamentosnuevos = [
+        $departamentos = [
             [
                 "codDepartamento" => "DDD",
                 "descDepartamento" => "descripcion a",
@@ -76,12 +76,12 @@
         $insercionDepartamento = $miDB->prepare($sqlInsert);
 
         //ejecutamos la insercion por cada departamento
-        foreach ($aDepartamentosnuevos as $aDatosCadaDepartamento) {
-            $insercionDepartamento->bindParam(":codDepartamento", $aDatosCadaDepartamento["codDepartamento"]);
-            $insercionDepartamento->bindParam(":descDepartamento", $aDatosCadaDepartamento["descDepartamento"]);
-            $insercionDepartamento->bindParam(":fechaAltaDepartamento", $aDatosCadaDepartamento["fechaAltaDepartamento"]);
-            $insercionDepartamento->bindParam(":volumenNegocioDepartamento", $aDatosCadaDepartamento["volumenNegocioDepartamento"]);
-            $insercionDepartamento->bindParam(":fechaBajaDepartamento", $aDatosCadaDepartamento["fechaBajaDepartamento"]);
+        foreach ($departamentos as $valorDepartamento) {
+            $insercionDepartamento->bindParam(":codDepartamento", $valorDepartamento["codDepartamento"]);
+            $insercionDepartamento->bindParam(":descDepartamento", $valorDepartamento["descDepartamento"]);
+            $insercionDepartamento->bindParam(":fechaAltaDepartamento", $valorDepartamento["fechaAltaDepartamento"]);
+            $insercionDepartamento->bindParam(":volumenNegocioDepartamento", $valorDepartamento["volumenNegocioDepartamento"]);
+            $insercionDepartamento->bindParam(":fechaBajaDepartamento", $valorDepartamento["fechaBajaDepartamento"]);
             $insercionDepartamento->execute();
         }
 
@@ -92,7 +92,7 @@
         echo '<table>';
         // mostrar la tabla
         echo '<tr class="titulo"> <td>Codigo</td> <td>Descripcion</td><td>FechaCreacion</td><td>VolumenNegocio</td><td>FechaBaja</td></tr>';
-        
+
         while ($oDepartamento = $consultaDepartamentos->fetchObject()) {
             echo '<tr>';
             echo '<td>' . $oDepartamento->T02_CodDepartamento . '</td>';
